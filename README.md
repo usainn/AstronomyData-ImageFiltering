@@ -2,43 +2,48 @@
 Python kullanarak FITS formatındaki astronomi verilerinin görselleştirilmesi, piksel ölçeklendirme ve gelişmiş görüntü işleme (filtreleme, gürültü azaltma) tekniklerinin uygulandığı kapsamlı bir analiz projesi.
 
 
-# Astronomik Veri Analizi ve Görüntü İşleme Portfolyosu 
+# Astroenformatik ve Bilimsel Veri Pipeline Modülü 
 
-Bu çalışma, **Ulusal Gözlemevleri (TUG, DAG)** bünyesindeki staj ve projelerimde kullanmak üzere geliştirdiğim; ham astronomik verilerin (FITS) bilimsel standartlarda işlenmesi, analiz edilmesi ve modern görüntü işleme teknikleriyle iyileştirilmesini içeren teknik bir portfolyodur.
+Bu proje, modern gözlemevlerinin (TUG, DAG vb.) ham veri işleme ihtiyaçlarına yönelik geliştirilmiş; Python ekosistemi üzerinden FITS veri analizi, sinyal iyileştirme ve otonom özellik tespiti süreçlerini otomatize eden teknik bir framework çalışmasıdır.
 
-##  Projenin Amacı ve Kapsamı
-Astronomi araştırmalarında kullanılan ham veriler, genellikle standart görsel formatların ötesinde, her pikselin fiziksel bir değer taşıdığı **FITS (Flexible Image Transport System)** formatındadır. Bu projede, bu ham verilerin bilimsel analiz süreçlerine hazırlanması ve bilgisayarlı görü (computer vision) algoritmalarıyla anlamlandırılması üzerine bir iş akışı oluşturulmuştur.
+##  Gözlemevleri İçin Stratejik Önemi ve Kullanım Alanları
 
----
+Bu modül, bir gözlemevinin veri işleme hattında (Data Pipeline) şu kritik aşamalarda doğrudan fayda sağlar:
 
-##  Teknik Yetkinlikler ve Uygulamalar
-
-###  1. FITS Veri Analizi ve Bilimsel Görselleştirme
-* **Veri Madenciliği:** `astroquery` kütüphanesi kullanılarak NASA/SkyView üzerinden M31 (Andromeda) gibi gök cisimlerine ait gerçek gözlem verileri çekilmiştir.
-* **Header Analizi:** FITS dosyalarının metadata (başlık) bilgileri üzerinden teleskop ve gözlem parametrelerinin analizi yapılmıştır.
-* **Piksel Ölçeklendirme (Scaling):** Ham verideki geniş dinamik aralığı insan gözünün algılayabileceği seviyeye getirmek için şu teknikler uygulanmıştır:
-    * **Z-Scaling:** Verideki gürültüyü baskılayıp sinyali ön plana çıkaran istatistiksel ölçeklendirme.
-    * **Logaritmik ve Karekök Dönüşümleri:** Galaktik kollar gibi düşük parlaklıktaki detayların belirginleştirilmesi.
-
-###  2. Gelişmiş Görüntü İşleme ve Özellik Çıkarımı
-* **Denoising (Gürültü Azaltma):** Gözlem sırasında oluşan termal ve elektronik gürültüleri temizlemek amacıyla Gaussian Blurring ve 2D Konvolüsyon teknikleri uygulanmıştır.
-* **Özellik Belirginleştirme:** `skimage` tabanlı **Sato** ve **Meijering** filtreleri ile galaksilerdeki filamenter yapıların ve toz bulutlarının analizi gerçekleştirilmiştir.
-* **Nesne Tespiti:** **Corner Foerstner** algoritması kullanılarak yıldız merkezlerinin ve dairesel objelerin yüksek hassasiyetle tespiti sağlanmıştır.
+1. **Otonom Veri Kalibrasyonu:** Ham dedektör verilerinin (Raw FITS) bilimsel analize hazır hale getirilmesi için gereken ölçeklendirme (Scaling) süreçlerini standartlaştırır.
+2. **Sinyal-Gürültü Oranı (SNR) Optimizasyonu:** Zayıf ışıklı objelerin gözlemlerinde, bilimsel veriyi bozmadan gürültü azaltma (Denoising) yaparak veri kalitesini artırır.
+3. **Morfolojik Analiz Otomasyonu:** Galaksilerin sarmal yapılarının, toz bulutlarının ve filamenter yapıların Sato/Meijering filtreleriyle otonom olarak sınıflandırılmasını sağlar.
+4. **Hassas Astrometri:** Corner Foerstner algoritmaları sayesinde yıldız merkezlerinin sub-pixel hassasiyetinde tespit edilmesini sağlayarak fotometrik hesaplamalara temel oluşturur.
 
 ---
 
-##  Teknoloji Yığını
+##  Teknik Modüller ve Derinlemesine Analiz
 
-Bu projede kullanılan kütüphaneler, modern astroenformatik çalışmalarının temelini oluşturmaktadır:
-* **Astroenformatik:** `Astropy`, `Astroquery`
-* **Görüntü İşleme:** `Scikit-Image`, `SciPy`, `OpenCV`
-* **Veri Analizi & Görselleştirme:** `NumPy`, `Matplotlib`
+###  1. Bilimsel FITS İşleme Ünitesi
+* **Astroquery & SkyView:** Proje, sanal gözlemevi protokollerini kullanarak heterojen veri kaynaklarından eşzamanlı veri çekme kabiliyetine sahiptir.
+* **Header & WCS Analizi:** Teleskop odak uzaklığı, poz süresi ve koordinat sistemi gibi kritik metadata bilgilerinin manipülasyonu.
+* **Gelişmiş Normalizasyon:** * `Z-Scaling`: Gözlem sırasındaki ekstrem parlaklık farklarını normalize ederek objenin en doğal formunu ortaya çıkarır.
+    * `Log/Sqrt Transformation`: Derin uzay nesnelerinin (nebula, uzak galaksi) sönük dış yapılarını görünür kılar.
+
+###  2. İleri Seviye Görüntü İşleme Hattı
+* **Konvolüsyonel Filtreleme:** SciPy tabanlı 2D konvolüsyon matrisleri ile gözlem gürültülerinin (noise) elimine edilmesi.
+* **Lineer Özellik Çıkarımı:** Astronomik görüntülerdeki çizgisel yapıları (gaz akışları, jetler) vurgulayan özel filtreleme algoritmaları.
+* **Hassas Obje Lokalizasyonu:** Bilgisayarlı görü teknikleriyle yıldızların ve dairesel kaynakların koordinat tabanlı tespiti.
 
 ---
 
-##  Kurulum ve Kullanım
+##  Teknoloji Yığını (Science-Stack)
 
-Proje, Google Colab üzerinde veya yerel bir Jupyter ortamında çalıştırılabilir. Gerekli bağımlılıkları yüklemek için:
+* **Çekirdek Dil:** Python 3.8+
+* **Astro-Kütüphaneler:** `Astropy` (FITS & WCS), `Astroquery` (Veri Madenciliği)
+* **Algoritma Geliştirme:** `Scikit-Image` (Feature Engineering), `SciPy` (Signal Processing)
+* **Veri Mimarisi:** `NumPy` (N-Dimensional Arrays), `Matplotlib` (Scientific Visualization)
+
+---
+
+##  Entegrasyon ve Dağıtım
+
+Modül, gözlemevi sunucularında veya kişisel araştırma istasyonlarında hızlıca kurulabilir:
 
 ```bash
 pip install astropy astroquery scikit-image scipy matplotlib numpy
