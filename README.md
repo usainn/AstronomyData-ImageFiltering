@@ -6,6 +6,10 @@ Python kullanarak FITS formatındaki astronomi verilerinin görselleştirilmesi,
 
 Bu proje, modern gözlemevlerinin (TUG, DAG vb.) ham veri işleme ihtiyaçlarına yönelik geliştirilmiş; Python ekosistemi üzerinden FITS veri analizi, sinyal iyileştirme ve otonom özellik tespiti süreçlerini otomatize eden teknik bir framework çalışmasıdır.
 
+
+<img width="425" height="413" alt="indir (4)" src="https://github.com/user-attachments/assets/556e04c7-ab93-4396-8d5b-a9cb756cf0e9" />
+
+
 ##  Gözlemevleri İçin Stratejik Önemi ve Kullanım Alanları
 
 Bu modül, bir gözlemevinin veri işleme hattında (Data Pipeline) şu kritik aşamalarda doğrudan fayda sağlar:
@@ -14,6 +18,8 @@ Bu modül, bir gözlemevinin veri işleme hattında (Data Pipeline) şu kritik a
 2. **Sinyal-Gürültü Oranı (SNR) Optimizasyonu:** Zayıf ışıklı objelerin gözlemlerinde, bilimsel veriyi bozmadan gürültü azaltma (Denoising) yaparak veri kalitesini artırır.
 3. **Morfolojik Analiz Otomasyonu:** Galaksilerin sarmal yapılarının, toz bulutlarının ve filamenter yapıların Sato/Meijering filtreleriyle otonom olarak sınıflandırılmasını sağlar.
 4. **Hassas Astrometri:** Corner Foerstner algoritmaları sayesinde yıldız merkezlerinin sub-pixel hassasiyetinde tespit edilmesini sağlayarak fotometrik hesaplamalara temel oluşturur.
+   
+<img width="657" height="342" alt="indir (3)" src="https://github.com/user-attachments/assets/e4c5bdbe-3142-42a7-84f6-00b755f9d898" />
 
 ---
 
@@ -29,6 +35,10 @@ Bu modül, bir gözlemevinin veri işleme hattında (Data Pipeline) şu kritik a
 * **Konvolüsyonel Filtreleme:** SciPy tabanlı 2D konvolüsyon matrisleri ile gözlem gürültülerinin (noise) elimine edilmesi.
 * **Lineer Özellik Çıkarımı:** Astronomik görüntülerdeki çizgisel yapıları (gaz akışları, jetler) vurgulayan özel filtreleme algoritmaları.
 * **Hassas Obje Lokalizasyonu:** Bilgisayarlı görü teknikleriyle yıldızların ve dairesel kaynakların koordinat tabanlı tespiti.
+
+<img width="959" height="698" alt="indir (2)" src="https://github.com/user-attachments/assets/f45c48d7-a413-4492-9a8d-cba72efaaa32" />
+
+  
 
 ---
 
