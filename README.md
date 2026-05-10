@@ -2,72 +2,43 @@
 Python kullanarak FITS formatındaki astronomi verilerinin görselleştirilmesi, piksel ölçeklendirme ve gelişmiş görüntü işleme (filtreleme, gürültü azaltma) tekniklerinin uygulandığı kapsamlı bir analiz projesi.
 
 
+# Astronomik Veri Analizi ve Görüntü İşleme Portfolyosu 
 
-# AstroImage-Processor: FITS Veri Analizi ve Gelişmiş Görüntü İşleme 🔭
+Bu çalışma, **Ulusal Gözlemevleri (TUG, DAG)** bünyesindeki staj ve projelerimde kullanmak üzere geliştirdiğim; ham astronomik verilerin (FITS) bilimsel standartlarda işlenmesi, analiz edilmesi ve modern görüntü işleme teknikleriyle iyileştirilmesini içeren teknik bir portfolyodur.
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
-[![Astropy](https://img.shields.io/badge/Powered%20by-Astropy-orange.svg)](https://www.astropy.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-Bu proje, uzay gözlemlerinden elde edilen ham **FITS (Flexible Image Transport System)** verilerinin işlenmesi, görselleştirilmesi ve gelişmiş görüntü işleme algoritmaları kullanılarak analiz edilmesini içerir. Tek bir Google Colab notebooku üzerinden, astronomik verilerin bilimsel standartlarda nasıl manipüle edileceği ve bilgisayarlı görü (computer vision) tekniklerinin bu verilere nasıl uygulanacağı uygulamalı olarak gösterilmektedir.
+##  Projenin Amacı ve Kapsamı
+Astronomi araştırmalarında kullanılan ham veriler, genellikle standart görsel formatların ötesinde, her pikselin fiziksel bir değer taşıdığı **FITS (Flexible Image Transport System)** formatındadır. Bu projede, bu ham verilerin bilimsel analiz süreçlerine hazırlanması ve bilgisayarlı görü (computer vision) algoritmalarıyla anlamlandırılması üzerine bir iş akışı oluşturulmuştur.
 
 ---
 
-## 📑 İçerik Tablosu
-1. [Proje Hakkında](#proje-hakkında)
-2. [Temel Özellikler](#temel-özellikler)
-3. [Kullanılan Veri Setleri](#kullanılan-veri-setleri)
-4. [Teknik Detaylar](#teknik-detaylar)
-5. [Kurulum ve Kullanım](#kurulum-ve-kullanım)
-6. [Görsel Sonuçlar](#görsel-sonuçlar)
+##  Teknik Yetkinlikler ve Uygulamalar
+
+###  1. FITS Veri Analizi ve Bilimsel Görselleştirme
+* **Veri Madenciliği:** `astroquery` kütüphanesi kullanılarak NASA/SkyView üzerinden M31 (Andromeda) gibi gök cisimlerine ait gerçek gözlem verileri çekilmiştir.
+* **Header Analizi:** FITS dosyalarının metadata (başlık) bilgileri üzerinden teleskop ve gözlem parametrelerinin analizi yapılmıştır.
+* **Piksel Ölçeklendirme (Scaling):** Ham verideki geniş dinamik aralığı insan gözünün algılayabileceği seviyeye getirmek için şu teknikler uygulanmıştır:
+    * **Z-Scaling:** Verideki gürültüyü baskılayıp sinyali ön plana çıkaran istatistiksel ölçeklendirme.
+    * **Logaritmik ve Karekök Dönüşümleri:** Galaktik kollar gibi düşük parlaklıktaki detayların belirginleştirilmesi.
+
+###  2. Gelişmiş Görüntü İşleme ve Özellik Çıkarımı
+* **Denoising (Gürültü Azaltma):** Gözlem sırasında oluşan termal ve elektronik gürültüleri temizlemek amacıyla Gaussian Blurring ve 2D Konvolüsyon teknikleri uygulanmıştır.
+* **Özellik Belirginleştirme:** `skimage` tabanlı **Sato** ve **Meijering** filtreleri ile galaksilerdeki filamenter yapıların ve toz bulutlarının analizi gerçekleştirilmiştir.
+* **Nesne Tespiti:** **Corner Foerstner** algoritması kullanılarak yıldız merkezlerinin ve dairesel objelerin yüksek hassasiyetle tespiti sağlanmıştır.
 
 ---
 
-## 🧐 Proje Hakkında
+##  Teknoloji Yığını
 
-Astronomi araştırmalarında görüntüler genellikle standart JPEG veya PNG formatında değil, her pikselin bilimsel bir değer (foton sayısı, yoğunluk vb.) taşıdığı **FITS** formatında saklanır. Bu proje, ham FITS verisini alıp:
-- İnsan gözünün görebileceği bir forma dönüştürmeyi (Scaling),
-- Gürültüden arındırmayı (Denoising),
-- Ve derin yapısal özelliklerini (Feature Extraction) ortaya çıkarmayı amaçlar.
-
----
-
-## ✨ Temel Özellikler
-
-### 🌌 Astronomik Veri Analizi
-* **Astroquery Entegrasyonu:** NASA SkyView servisleri üzerinden M31 (Andromeda Galaksisi) verilerinin otomatik olarak çekilmesi.
-* **FITS Manipülasyonu:** Dosya başlık (header) bilgilerinin incelenmesi ve Python ile özel FITS dosyalarının oluşturulması.
-* **Gelişmiş Ölçeklendirme Teknikleri:** * `Min-Max Scaling` (Yoğunluk Normalizasyonu)
-    * `Z-Scaling` (İstatistiksel Görselleştirme)
-    * `Logaritmik & Karekök Normalizasyon` (Düşük ışıklı detayların ve galaktik kolların vurgulanması)
-    * `ZScaleInterval` ile profesyonel kontrast ayarı.
-
-### 🖼️ Görüntü İşleme ve Filtreleme
-* **Gürültü Temizleme (Denoising):** Gaussian Kernel konvolüsyonu kullanılarak ham verideki sinyal gürültüsünün azaltılması.
-* **Kenar ve Yapı Tespiti:** * `Sato` ve `Meijering` filtreleri kullanılarak galaksi içindeki toz bulutlarının ve doğrusal yapıların belirginleştirilmesi.
-    * `Corner Foerstner` algoritması ile yıldız merkezlerinin ve dairesel objelerin hassas tespiti.
-* **Multiscale Analysis:** Yerel özelliklerin (local features) farklı ölçeklerde analiz edilerek veri setinden çıkarılması.
+Bu projede kullanılan kütüphaneler, modern astroenformatik çalışmalarının temelini oluşturmaktadır:
+* **Astroenformatik:** `Astropy`, `Astroquery`
+* **Görüntü İşleme:** `Scikit-Image`, `SciPy`, `OpenCV`
+* **Veri Analizi & Görselleştirme:** `NumPy`, `Matplotlib`
 
 ---
 
-## 🛠 Teknik Detaylar
+##  Kurulum ve Kullanım
 
-Projede kullanılan temel kütüphaneler ve görevleri:
+Proje, Google Colab üzerinde veya yerel bir Jupyter ortamında çalıştırılabilir. Gerekli bağımlılıkları yüklemek için:
 
-| Kütüphane | Kullanım Amacı |
-| :--- | :--- |
-| **Astropy** | FITS okuma/yazma, görselleştirme ve birim sistemleri. |
-| **Astroquery** | Çevrimiçi astronomik veri arşivlerine erişim. |
-| **Scikit-Image** | Gelişmiş filtreleme (Sato, Meijering) ve özellik tespiti. |
-| **SciPy** | 2D Konvolüsyon ve sinyal işleme algoritmaları. |
-| **Matplotlib** | Bilimsel görselleştirme ve histogram analizleri. |
-| **NumPy** | Matris işlemleri ve veri normalizasyonu. |
-
----
-
-## 🚀 Kurulum ve Kullanım
-
-1. **Depoyu Klonlayın:**
-   ```bash
-   git clone [https://github.com/kullaniciadi/AstroImage-Processor.git](https://github.com/kullaniciadi/AstroImage-Processor.git)
-   cd AstroImage-Processor
+```bash
+pip install astropy astroquery scikit-image scipy matplotlib numpy
